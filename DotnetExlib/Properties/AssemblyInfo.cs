@@ -42,4 +42,4 @@ using DotnetExlib.Properties;
 [assembly: NeutralResourcesLanguage("ja-JP")]
 
 // このライブラリの開発者です。
-[assembly: Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+[assembly: Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.Developer)]

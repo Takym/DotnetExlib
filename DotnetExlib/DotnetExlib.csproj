@@ -103,6 +103,7 @@
     <Compile Include="IO\IConfigFile.cs" />
     <Compile Include="IO\IniFile.cs" />
     <Compile Include="IO\TemporaryFile.cs" />
+    <Compile Include="Properties\LicenseKind.cs" />
     <Compile Include="Properties\AuthorAttribute.cs" />
     <Compile Include="Properties\CurrentVersion.cs" />
     <Compile Include="StringUtils.cs" />

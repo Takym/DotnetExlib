@@ -8,7 +8,7 @@ namespace DotnetExlib.AppRegistry
 	/// <summary>
 	///  ファイル拡張子を管理する為のクラスです。
 	/// </summary>
-	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.LGPLv3)]
 	public class FileExtension : IDisposable
 	{
 		/// <summary>

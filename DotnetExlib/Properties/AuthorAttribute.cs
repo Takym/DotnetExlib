@@ -35,7 +35,7 @@ namespace DotnetExlib.Properties
 		/// <summary>
 		///  プログラムのライセンスです。
 		/// </summary>
-		public string License { get; }
+		public LicenseKind License { get; }
 
 		/// <summary>
 		///  開発者情報を指定して、新しいインスタンスを生成します。
@@ -43,7 +43,7 @@ namespace DotnetExlib.Properties
 		/// <param name="name">開発者の名前です。</param>
 		/// <param name="copyright">著作権情報です。省略できます。</param>
 		/// <param name="license">プログラムのライセンスです。限定値は、<c>"LGPLv3"</c>です。</param>
-		public AuthorAttribute(string name, string copyright = "", string license = "LGPLv3")
+		public AuthorAttribute(string name, string copyright = "", LicenseKind license = LicenseKind.LGPLv3)
 		{
 			this.Name = name;
 			this.Copyright = copyright;

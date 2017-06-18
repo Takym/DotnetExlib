@@ -9,7 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestAppl
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{3985DC10-93AC-42DC-B9E1-61ECE47DD9A7}"
 	ProjectSection(SolutionItems) = preProject
-		LICENSE.md = LICENSE.md
+		LGPLv3.md = LGPLv3.md
+		MIT.txt = MIT.txt
 	EndProjectSection
 EndProject
 Global
