@@ -111,11 +111,6 @@
     <Compile Include="Xorshift.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LICENSE.md">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

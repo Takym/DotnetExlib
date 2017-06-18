@@ -1,11 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotnetExlib", "DotnetExlib\DotnetExlib.csproj", "{0B645688-79A8-4FED-8726-FBDD66C15963}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApplication", "TestApplication\TestApplication.csproj", "{0852E272-B716-445C-A7B7-64235EAAFAE5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{3985DC10-93AC-42DC-B9E1-61ECE47DD9A7}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE.md = LICENSE.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
