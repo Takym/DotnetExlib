@@ -4,7 +4,7 @@ using DotnetExlib.Properties;
 namespace DotnetExlib
 {
 	/// <summary>
-	///  <see cref="string"/>クラスの拡張メソッドを提供します。
+	///  <see cref="string"/>クラスの拡張メソッドと便利関数を提供します。
 	/// </summary>
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public static class StringUtils
@@ -59,18 +59,16 @@ namespace DotnetExlib
 		{
 			string text = s.ToLower();
 			switch (text) {
-				case "true":
-				case "yes":
-				case "on":
-				case "pos":
-				case "positive":
+				case "true":   case "yes":
+				case "on":     case "allow":
+				case "pos":    case "positive":
+				case "one":    case "1":
 					result = true;
 					return true;
-				case "false":
-				case "no":
-				case "off":
-				case "neg":
-				case "negative":
+				case "false":  case "no":
+				case "off":    case "deny":
+				case "neg":    case "negative":
+				case "zero":   case "0":
 					result = false;
 					return true;
 				default:
