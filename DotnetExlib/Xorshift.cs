@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DotnetExlib.Properties;
 
 namespace DotnetExlib
@@ -122,11 +118,19 @@ namespace DotnetExlib
 			}
 		}
 
+		/// <summary>
+		///  このオブジェクトのSEED値を文字列形式で取得します。
+		/// </summary>
+		/// <returns>string型の値です。</returns>
 		public override string ToString()
 		{
 			return $"Seed:{Seed}, X:{x}, Y:{y}, Z:{z}, W:{w}";
 		}
 
+		/// <summary>
+		///  このオブジェクトのハッシュコードです。
+		/// </summary>
+		/// <returns>int型の値です。</returns>
 		public override int GetHashCode()
 		{
 			return Seed.GetHashCode();
