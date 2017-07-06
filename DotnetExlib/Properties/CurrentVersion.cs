@@ -81,14 +81,14 @@ namespace DotnetExlib.Properties
 				asm.GetCustomAttribute<AssemblyTitleAttribute>()?.Title,
 				asm.GetCustomAttribute<AssemblyCopyrightAttribute>()?.Copyright);
 
-			result.AppendFormat("Name            :{0}\n",
+			result.AppendFormat("Name            : {0}\n",
 				asm.GetCustomAttribute<AssemblyProductAttribute>()?.Product);
 
-			result.AppendFormat("AssemblyVersion :{0}\n", asm_ver.ToString(4));
+			result.AppendFormat("AssemblyVersion : {0}\n", asm_ver.ToString(4));
 
 			if (success) {
 				if (file_ver.Major >= 256 || file_ver.Minor >= 256 || file_ver.Build >= 256 || file_ver.Revision >= 256) {
-					result.AppendFormat("FileVersion     :WRONG:{0}\n",
+					result.AppendFormat("FileVersion     : WRONG:{0}\n",
 						file_ver.ToString(4));
 				} else {
 					int i = file_ver.Revision / 10;
@@ -97,28 +97,30 @@ namespace DotnetExlib.Properties
 						i = 26;
 						j = 0;
 					}
-					result.AppendFormat("FileVersion     :{0}/{1}{2}\n",
+					result.AppendFormat("FileVersion     : {0}/{1}{2}\n",
 						file_ver.ToString(3),
 						EditionCodes[i],
 						j == 0 ? "" : j.ToString());
 				}
 			} else {
-				result.AppendFormat("FileVersion     :WRONG_VERSION\n");
+				result.AppendFormat("FileVersion     : WRONG_VERSION\n");
 			}
 
-			result.AppendFormat("CodeName        :{0}\n",
+			result.AppendFormat("CodeName        : {0}\n",
 				asm.GetCustomAttribute<AssemblyInformationalVersionAttribute>()?.InformationalVersion);
 
-			result.AppendFormat("Config          :{0}\n",
+			result.AppendFormat("Config          : {0}\n",
 				asm.GetCustomAttribute<AssemblyConfigurationAttribute>()?.Configuration);
 
-			result.AppendFormat("Comment         :{0}\n",
+			result.AppendFormat("Comment         : {0}\n",
 				asm.GetCustomAttribute<AssemblyDescriptionAttribute>()?.Description);
 
 			result.AppendFormat("--------------------------------\n\n");
 
 			return result.ToString();
 		}
+
+
 
 		/// <summary>
 		///  このライブラリのアセンブリ情報を、標準入出力ストリーム(コンソール)に出力します。

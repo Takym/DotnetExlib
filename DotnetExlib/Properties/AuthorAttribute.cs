@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace DotnetExlib.Properties
 {
@@ -9,7 +10,7 @@ namespace DotnetExlib.Properties
 	/// </summary>
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	[AttributeUsage(Targets, AllowMultiple = true, Inherited = false)]
-	public class AuthorAttribute : Attribute
+	public sealed class AuthorAttribute : Attribute
 	{
 		/// <summary>
 		///  この属性を適用する事ができるアプリケーション要素です。
@@ -59,11 +60,27 @@ namespace DotnetExlib.Properties
 		/// </returns>
 		public static AuthorAttribute[] GetAuthors(Type type)
 		{
-			Attribute[] attrs = GetCustomAttributes(type);
+			return getAuthors(GetCustomAttributes(type));
+		}
+
+		/// <summary>
+		///  指定したアセンブリから開発者情報を全て取得します。
+		/// </summary>
+		/// <param name="asm">取得元のアセンブリです。</param>
+		/// <returns>
+		///  開発者情報を表す型'<see cref="DotnetExlib.Properties.AuthorAttribute"/>'の配列です。
+		/// </returns>
+		public static AuthorAttribute[] GetAuthors(Assembly asm)
+		{
+			return getAuthors(GetCustomAttributes(asm));
+		}
+
+		private static AuthorAttribute[] getAuthors(Attribute[] attrs)
+		{
 			List<AuthorAttribute> result = new List<AuthorAttribute>();
-			foreach (var item in attrs) {
-				if (item is AuthorAttribute val) {
-					result.Add(val);
+			for (int i = 0; i < attrs.Length; ++i) {
+				if (attrs[i] is AuthorAttribute obj) {
+					result.Add(obj);
 				}
 			}
 			return result.ToArray();
