@@ -7,7 +7,7 @@ namespace DotnetExlib.Graphics
 	/// <summary>
 	///  画像を表すオブジェクトです。
 	/// </summary>
-	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.MIT)]
 	public abstract class Picture : IDisposable, ICloneable
 	{
 		/// <summary>

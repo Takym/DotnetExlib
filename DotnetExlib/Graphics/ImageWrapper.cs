@@ -7,7 +7,7 @@ namespace DotnetExlib.Graphics
 	///  <see cref="System.Drawing.Image"/>クラスを<see cref="DotnetExlib.Graphics.Picture"/>にラップするクラスです。
 	///  このクラスは継承できません。
 	/// </summary>
-	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.MIT)]
 	public sealed class ImageWrapper : Picture
 	{
 		private Image _img;

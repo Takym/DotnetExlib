@@ -1,9 +1,14 @@
 ﻿//#define NO_DEV_CHECK // 開発者情報チェックプログラムを実行しない場合はNO_DEV_CHECKを宣言
+//#define NO_LAYER_PICTURE // レイヤー画像生成のチェックプログラムを実行しない場合はNO_LAYER_PICTUREを宣言
 
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.Reflection;
+using DotnetExlib.Graphics;
 using DotnetExlib.Properties;
+using TestApplication.Properties;
 
 namespace TestApplication
 {
@@ -86,6 +91,24 @@ namespace TestApplication
 			} catch (Exception error) {
 				Console.WriteLine(error.ToString());
 			}
+
+			Console.WriteLine("--------------------------------\n\n");
+			Console.ReadLine();
+#endif
+			#endregion
+
+			#region レイヤー画像生成
+#if !NO_LAYER_PICTURE
+			Console.WriteLine("画像生成中・・・");
+
+			PictureLayer pl = new PictureLayer();
+			pl.SetSize(new Size(48, 48));
+			pl.Add(new ImageWrapper(Resources.Image1));
+			pl.Add(new ImageWrapper(Resources.Image2));
+			pl.Add(new ImageWrapper(Resources.Image3));
+			pl.ToImage().Save("Image0.png", ImageFormat.Png);
+
+			Console.WriteLine("Image0.pngを生成しました。");
 
 			Console.WriteLine("--------------------------------\n\n");
 			Console.ReadLine();

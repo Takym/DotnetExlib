@@ -9,7 +9,7 @@ namespace DotnetExlib.Graphics
 	/// <summary>
 	///  複数の画像のレイヤーです。
 	/// </summary>
-	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.MIT)]
 	public class PictureLayer : Picture, IList<Picture>
 	{
 		/// <summary>
