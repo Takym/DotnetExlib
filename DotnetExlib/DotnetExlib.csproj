@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="AppRegistry\FileExtension.cs" />
     <Compile Include="ConsoleUtils.cs" />
+    <Compile Include="DictionaryExtension.cs" />
     <Compile Include="Graphics\ImageWrapper.cs" />
     <Compile Include="Graphics\Picture.cs" />
     <Compile Include="Graphics\PictureLayer.cs" />
