@@ -1,4 +1,5 @@
-﻿//#define NO_DEV_CHECK // 開発者情報チェックプログラムを実行しない場合はNO_DEV_CHECKを宣言
+﻿//#define NO_PASSWORD_TEST // パスワード入力プログラムの実験を実行しない場合はNO_PASSWORD_TESTを宣言
+//#define NO_DEV_CHECK // 開発者情報チェックプログラムを実行しない場合はNO_DEV_CHECKを宣言
 //#define NO_LAYER_PICTURE // レイヤー画像生成のチェックプログラムを実行しない場合はNO_LAYER_PICTUREを宣言
 
 using System;
@@ -6,6 +7,9 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Security;
+using DotnetExlib;
 using DotnetExlib.Graphics;
 using DotnetExlib.Properties;
 using TestApplication.Properties;
@@ -20,6 +24,20 @@ namespace TestApplication
 			CurrentVersion.ShowInConsole();
 			CurrentVersion.ShowInConsole(typeof(Program).Assembly);
 			Console.ReadLine();
+
+			#region パスワード入力プログラムの実験
+#if !NO_PASSWORD_TEST
+			// 起動パスワード確認
+			Console.WriteLine();
+pwprompt:
+			Console.Write("このライブラリの名前を入力：");
+			SecureString pass = ConsoleUtils.ReadPassword();
+			string pw = Marshal.PtrToStringUni(Marshal.SecureStringToGlobalAllocUnicode(pass));
+			if (pw == "DotnetExlib") ConsoleUtils.Pause();
+			else goto pwprompt;
+			Console.WriteLine();
+#endif
+			#endregion
 
 			#region 開発者情報に不正が存在しないかチェック
 #if !NO_DEV_CHECK
