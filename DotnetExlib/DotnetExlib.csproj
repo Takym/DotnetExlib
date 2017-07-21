@@ -85,7 +85,12 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Properties\Icon.zerolib.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <Win32Resource>.\Properties\IconLibrary.rct</Win32Resource>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -119,7 +124,12 @@
     <Compile Include="Xorshift.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Properties\Icon.ico" />
     <Content Include="Properties\Icon.zerolib.ico" />
+    <Content Include="Properties\IconLibrary.rct" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
