@@ -118,8 +118,9 @@ namespace DotnetExlib
 		///  <para>
 		///   <example>
 		///    <code>
-		///     string s = DotnetExlib.StringUtils.GetRandomText(8, 8, 34187);
-		///     // 's' is "kRgz5izo"
+		///     string s = DotnetExlib.StringUtils.GetRandomText(8, 8, seed);
+		///     // Variable 's' is "kRgz5izo".
+		///     // Variable 'seed' is seed value.
 		///    </code>
 		///   </example>
 		///  </para>
@@ -138,6 +139,7 @@ namespace DotnetExlib
 			}
 			return result;
 		}
+
 		const string c = "!#$0aAbBcCdDeEfF%&'gGhH1234()-=IiJjKkLlMmNnOoPp^~@[{]}5678qrstuv;+QRSTUV9WXYZwxyz,._";
 	}
 }

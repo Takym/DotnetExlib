@@ -5,14 +5,15 @@ namespace DotnetExlib
 {
 	/// <summary>
 	///  Xorshiftを使用した疑似乱数生成器です。
+	///  このクラスは継承できません。
 	/// </summary>
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
-	public class Xorshift : Random
+	public sealed class Xorshift : Random, IRandom
 	{
 		/// <summary>
 		///  最初に与えられたシード値です。
 		/// </summary>
-		public readonly ulong Seed;
+		public ulong Seed { get; private set; }
 
 		private ulong x, y, z, w;
 
@@ -24,27 +25,37 @@ namespace DotnetExlib
 		public Xorshift()
 		{
 			ulong a = ((ulong)(Sample() * long.MaxValue));
-			Seed = ((ulong)(Environment.TickCount)) ^ a;
+			this.Seed = ((ulong)(Environment.TickCount)) ^ a;
 			this.ResetSeed();
 		}
 
 		/// <summary>
 		///  シード値を設定して、新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="Seed">シード値です。</param>
-		public Xorshift(long Seed)
+		/// <param name="seed">シード値です。</param>
+		public Xorshift(long seed)
 		{
-			this.Seed = ((ulong)(Seed));
+			this.Seed = ((ulong)(seed));
 			this.ResetSeed();
 		}
 
 		/// <summary>
 		///  シード値を設定して、新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="Seed">シード値です。</param>
-		public Xorshift(ulong Seed)
+		/// <param name="seed">シード値です。</param>
+		public Xorshift(ulong seed)
 		{
-			this.Seed = Seed;
+			this.Seed = seed;
+			this.ResetSeed();
+		}
+
+		/// <summary>
+		///  新しいシード値を設定します。
+		/// </summary>
+		/// <param name="seed">設定するシード値です。</param>
+		public void SetSeed(ulong seed)
+		{
+			this.Seed = seed;
 			this.ResetSeed();
 		}
 
@@ -53,17 +64,26 @@ namespace DotnetExlib
 		/// </summary>
 		public void ResetSeed()
 		{
-			x = 0x83F38C937DE3A4B3;
+			x = Seed ^ 0x83F38C937DE3A4B3;
 			y = Seed ^ 0xCF2628AE4CD41B08;
-			z = ((Seed >> 32) | (Seed & 0xFFFFFFFF00000000)) & 1;
-			w = x ^ z;
+			z = ((Seed >> 32) | (Seed << 32));
+			w = x ^ y;
+		}
+
+		/// <summary>
+		///  0～1の間の乱数を生成します。
+		/// </summary>
+		/// <returns>生成された型'<see cref="System.Double"/>'の値です。</returns>
+		public override double NextDouble()
+		{
+			return 1D / NextUInt64();
 		}
 
 		/// <summary>
 		///  符号無し64bitの乱数を生成します。
 		/// </summary>
 		/// <returns>乱数です。</returns>
-		public virtual ulong NextUInt64()
+		public ulong NextUInt64()
 		{
 			ulong i = x ^ (x << 11);
 			x = y; y = z; z = w;
@@ -74,57 +94,32 @@ namespace DotnetExlib
 		///  符号有り64bitの乱数を生成します。
 		/// </summary>
 		/// <returns>乱数です。</returns>
-		public virtual long NextSInt64()
+		public long NextSInt64()
 		{
 			ulong i = x ^ (x << 11);
 			x = y; y = z; z = w;
 			return ((long)(w = (w ^ (w >> 19)) ^ (i ^ (i >> 8))));
 		}
 
-		/*
-		public override int Next()
+		/// <summary>
+		///  64ビット符号無し整数の設定された最大値未満の乱数を生成します。
+		/// </summary>
+		/// <param name="maxValue">乱数の最大値です。</param>
+		/// <returns>生成された型'<see cref="System.UInt64"/>'の値です。</returns>
+		public ulong NextUInt64(ulong maxValue)
 		{
-			return unchecked((int)(NextSInt64() >> 32 & 0xFFFFFFFF));
-		}
-
-		public override int Next(int maxValue)
-		{
-			return unchecked((int)(NextSInt64() >> 32 & 0xFFFFFFFF)) % maxValue;
-		}
-
-		public override int Next(int minValue, int maxValue)
-		{
-			return Next(minValue + maxValue) - minValue;
-		}
-
-		public override double NextDouble()
-		{
-			return 1D / NextUInt64();
-		}
-		//*/
-
-		public override void NextBytes(byte[] buffer)
-		{
-			for (int i = 0; i < buffer.Length; i += 8) {
-				ulong a = NextUInt64();
-				buffer[i + 0] = ((byte)(a & 0x00000000000000FF));
-				buffer[i + 1] = ((byte)(a & 0x000000000000FF00));
-				buffer[i + 2] = ((byte)(a & 0x0000000000FF0000));
-				buffer[i + 3] = ((byte)(a & 0x00000000FF000000));
-				buffer[i + 4] = ((byte)(a & 0x000000FF00000000));
-				buffer[i + 5] = ((byte)(a & 0x0000FF0000000000));
-				buffer[i + 6] = ((byte)(a & 0x00FF000000000000));
-				buffer[i + 7] = ((byte)(a & 0xFF00000000000000));
-			}
+			return NextUInt64() % maxValue;
 		}
 
 		/// <summary>
-		///  このオブジェクトのSEED値を文字列形式で取得します。
+		///  64ビット符号無し整数の設定された最小値以上で最大値未満の乱数を生成します。
 		/// </summary>
-		/// <returns>string型の値です。</returns>
-		public override string ToString()
+		/// <param name="minValue">乱数の最小値です。</param>
+		/// <param name="maxValue">乱数の最大値です。</param>
+		/// <returns>生成された型'<see cref="System.UInt64"/>'の値です。</returns>
+		public ulong NextUInt64(ulong minValue, ulong maxValue)
 		{
-			return $"Seed:{Seed}, X:{x}, Y:{y}, Z:{z}, W:{w}";
+			return NextUInt64() % (maxValue - minValue) + minValue;
 		}
 
 		/// <summary>
@@ -134,21 +129,6 @@ namespace DotnetExlib
 		public override int GetHashCode()
 		{
 			return Seed.GetHashCode();
-		}
-
-		public override bool Equals(object obj)
-		{
-			return false;
-		}
-
-		public static bool operator ==(Xorshift left, Xorshift right)
-		{
-			return false;
-		}
-
-		public static bool operator !=(Xorshift left, Xorshift right)
-		{
-			return true;
 		}
 	}
 }

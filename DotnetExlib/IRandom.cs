@@ -46,6 +46,12 @@ namespace DotnetExlib
 		ulong NextUInt64(ulong minValue, ulong maxValue);
 
 		/// <summary>
+		///  64ビット符号有り整数の乱数を生成します。
+		/// </summary>
+		/// <returns>生成された型'<see cref="System.UInt64"/>'の値です。</returns>
+		long NextSInt64();
+
+		/// <summary>
 		///  0～1の間の乱数を生成します。
 		/// </summary>
 		/// <returns>生成された型'<see cref="System.Double"/>'の値です。</returns>
