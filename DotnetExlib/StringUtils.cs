@@ -57,18 +57,20 @@ namespace DotnetExlib
 		/// </returns>
 		public static bool TryToBoolean(this string s, out bool result)
 		{
-			string text = s.ToLower();
+			string text = s.ToLower().Trim(' ', '\t', '\n', '\r');
 			switch (text) {
 				case "true":   case "yes":
 				case "on":     case "allow":
 				case "pos":    case "positive":
 				case "one":    case "1":
+				case "high":
 					result = true;
 					return true;
 				case "false":  case "no":
 				case "off":    case "deny":
 				case "neg":    case "negative":
 				case "zero":   case "0":
+				case "low":
 					result = false;
 					return true;
 				default:

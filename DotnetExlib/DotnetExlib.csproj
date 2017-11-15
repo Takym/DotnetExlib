@@ -105,12 +105,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AOP\AspectableAttribute.cs" />
+    <Compile Include="AOP\AspectProxy.cs" />
+    <Compile Include="AOP\IAspectBehavior.cs" />
+    <Compile Include="AOP\Logger.cs" />
     <Compile Include="AppRegistry\FileExtension.cs" />
     <Compile Include="ConsoleUtils.cs" />
     <Compile Include="DictionaryExtension.cs" />
+    <Compile Include="DisposableBase.cs" />
     <Compile Include="Graphics\ImageWrapper.cs" />
     <Compile Include="Graphics\Picture.cs" />
     <Compile Include="Graphics\PictureLayer.cs" />
+    <Compile Include="IO\Database\INode.cs" />
     <Compile Include="IO\FilePlace.cs" />
     <Compile Include="IO\IConfigFile.cs" />
     <Compile Include="IO\IniFile.cs" />
