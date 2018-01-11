@@ -6,7 +6,7 @@ using DotnetExlib.Properties;
 namespace DotnetExlib
 {
 	/// <summary>
-	///  <see cref="System.IDisposable"/>クラスの基本メソッドを実行した、抽象クラスです。
+	///  <see cref="System.IDisposable"/>クラスの基本メソッドを実装した、抽象クラスです。
 	/// </summary>
 	[Aspectable(AspectProxyType = typeof(Logger))]
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]

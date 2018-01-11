@@ -92,7 +92,7 @@ namespace DotnetExlib.Properties
 						file_ver.ToString(4));
 				} else {
 					int i = file_ver.Revision / 10;
-					int j = file_ver.Revision - i * 10;
+					int j = file_ver.Revision - (i * 10);
 					if (i == 25 && j == 5) {
 						i = 26;
 						j = 0;

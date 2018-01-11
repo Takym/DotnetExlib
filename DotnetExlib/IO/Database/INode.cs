@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DotnetExlib.Properties;
 
 namespace DotnetExlib.IO.Database
 {
 	/// <summary>
 	///  データベースの一つのノードを表します。
+	///  この機能はまだ完成していません。
 	/// </summary>
+	[Obsolete("この機能はまだ完成していません。")]
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public interface INode
 	{

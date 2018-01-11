@@ -6,23 +6,23 @@ using Microsoft.Win32;
 namespace DotnetExlib.AppRegistry
 {
 	/// <summary>
-	///  ファイル拡張子を管理する為のクラスです。
+	///  プロトコルを管理する為のクラスです。
 	/// </summary>
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.MIT)]
-	public class FileExtension : DisposableBase, IExtensionRegistry
+	public class Protocol : DisposableBase, IExtensionRegistry
 	{
 		/// <summary>
-		///  変更する拡張子です。先頭に<c>"."</c>を付けません。
+		///  変更するプロトコルです。文字列の終端に<c>":"</c>を付けません。
 		/// </summary>
 		public string Name { get; }
 
 		/// <summary>
-		///  拡張子の説明です。エクスプローラの種類に表示される文字列です。
+		///  プロトコルの説明です。
 		/// </summary>
 		public string Description { get; set; }
 
 		/// <summary>
-		///  ファイルアイコンのファイルパスです。
+		///  プロトコルアイコンのファイルパスです。
 		/// </summary>
 		public string IconPath { get; set; }
 
@@ -32,28 +32,28 @@ namespace DotnetExlib.AppRegistry
 		public int IconIndex { get; set; } = -1;
 
 		/// <summary>
-		///  拡張子の動詞の一覧です。
+		///  プロトコルの動詞の一覧です。
 		/// </summary>
 		public IDictionary<string, (string Command, string Description)> Verbs { get; }
 
 		private RegistryKey _key_b, _key_ico, _key_shell;
 
 		/// <summary>
-		///  操作する拡張子を指定して、新しいインスタンスを生成します。
+		///  操作するプロトコルを指定して、新しいインスタンスを生成します。
 		/// </summary>
-		/// <param name="ext">変更する拡張子です。先頭に<c>"."</c>を付けません。</param>
-		public FileExtension(string ext) : base()
+		/// <param name="prot">変更するプロトコルです。文字列の終端に<c>":"</c>を付けません。</param>
+		public Protocol(string prot) : base()
 		{
-			this.Name = ext;
+			this.Name = prot;
 			this.Verbs = new Dictionary<string, (string Command, string Description)>();
 
-			using (var _key_a = Registry.ClassesRoot.CreateSubKey("." + ext, true)) {
-				string _key_name = (string)(_key_a.GetValue(null, ext + "_auto_file"));
-				_key_a.SetValue(null, _key_name);
-				_key_b = Registry.ClassesRoot.CreateSubKey(_key_name, true);
-				_key_ico = _key_b.CreateSubKey("DefaultIcon", true);
-				_key_shell = _key_b.CreateSubKey("shell", true);
+			using (var _key_a = Registry.ClassesRoot.CreateSubKey(@"PROTOCOLS\Handler\" + prot, true)) {
+				this.Description = _key_a.GetValue("", "").ToString();
 			}
+
+			_key_b = Registry.ClassesRoot.CreateSubKey(prot, true);
+			_key_ico = _key_b.CreateSubKey("DefaultIcon", true);
+			_key_shell = _key_b.CreateSubKey("shell", true);
 
 			this.Description = _key_b.GetValue(null, "").ToString();
 			string[] icopath = _key_ico.GetValue(null, "").ToString().Split(',');

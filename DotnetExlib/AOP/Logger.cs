@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.Remoting.Activation;
 using System.Runtime.Remoting.Messaging;
 using DotnetExlib.Properties;
@@ -8,6 +9,11 @@ namespace DotnetExlib.AOP
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public class Logger : IAspectBehavior
 	{
+		/// <summary>
+		///  ログの出力先のライターです。
+		/// </summary>
+		public static TextWriter Out;
+
 		private Type _type;
 		public Logger(Type target)
 		{
@@ -16,22 +22,26 @@ namespace DotnetExlib.AOP
 
 		public void PreInitializer(IConstructionCallMessage msg)
 		{
-			Console.WriteLine($"{_type.FullName}.{msg.MethodName} : インスタンス生成開始 . . .");
+			Out.WriteLine($"{_type.FullName}.{msg.MethodName} : Start to create object instance. . .");
+			//Out.WriteLine($"{_type.FullName}.{msg.MethodName} : インスタンス生成開始 . . .");
 		}
 
 		public void PostInitializer(IConstructionCallMessage msg)
 		{
-			Console.WriteLine($"{_type.FullName}.{msg.MethodName} : 正常にインスタンスを生成しました。");
+			Out.WriteLine($"{_type.FullName}.{msg.MethodName} : 正常にインスタンスを生成しました。");
+			//Out.WriteLine($"{_type.FullName}.{msg.MethodName} : 正常にインスタンスを生成しました。");
 		}
 
 		public void PreCallMethod(IMethodCallMessage msg)
 		{
-			Console.WriteLine($"{_type.FullName}.{msg.MethodName} : 実行開始");
+			Out.WriteLine($"{_type.FullName}.{msg.MethodName} : Start function");
+			//Out.WriteLine($"{_type.FullName}.{msg.MethodName} : 実行開始");
 		}
 
 		public void PostCallMethod(IMethodCallMessage msg)
 		{
-			Console.WriteLine($"{_type.FullName}.{msg.MethodName} : 実行終了");
+			Out.WriteLine($"{_type.FullName}.{msg.MethodName} : End function");
+			//Out.WriteLine($"{_type.FullName}.{msg.MethodName} : 実行終了");
 		}
 	}
 }

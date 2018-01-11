@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 using System.Text;
 using DotnetExlib.Properties;
 
@@ -8,13 +9,13 @@ namespace DotnetExlib
 	///  WindowsのネイティブのAPIを呼び出します。
 	///  このクラスは静的クラスです。
 	/// </summary>
-	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.NoLicense)]
 	public static class WinAPIWrapper
 	{
 		/// <summary>
-		///  <c>kernel32.dll</c>内のAPIを呼び出します。
+		///  <see langword="kernel32.dll" />内のAPIを呼び出します。
 		/// </summary>
-		[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+		[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.NoLicense)]
 		public static class Kernel32
 		{
 			/// <summary>
@@ -44,6 +45,48 @@ namespace DotnetExlib
 				string lpKeyName,
 				string lpString,
 				string lpFileName);
+		}
+
+		/// <summary>
+		///  <see langword="shell32.dll" />内のAPIを呼び出します。
+		/// </summary>
+		[Author("Takym", copyright: "Copyright (C) 2017 Takym.", license: LicenseKind.NoLicense)]
+		public static class Shell32
+		{
+			/// <summary>
+			///  このラッパーが参照しているDLLファイルへのファイルパスです。
+			/// </summary>
+			public const string LibraryPath = @"C:\WINDOWS\system32\SHELL32.DLL";
+
+			[DllImport(LibraryPath)]
+			public static extern IntPtr ExtractIcon(
+				IntPtr hInst,
+				[MarshalAs(UnmanagedType.LPTStr)] string lpszExeFileName,
+				uint nIconIndex);
+
+			[DllImport(LibraryPath)]
+			public static extern uint ExtractIconEx(
+				[MarshalAs(UnmanagedType.LPTStr)] string lpszFile,
+				int nIconIndex,
+				out IntPtr phiconLarge,
+				out IntPtr phiconSmall,
+				uint nIcons);
+		}
+
+		/// <summary>
+		///  <see langword="user32.dll" />内のAPIを呼び出します。
+		/// </summary>
+		[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
+		public static class User32
+		{
+			/// <summary>
+			///  このラッパーが参照しているDLLファイルへのファイルパスです。
+			/// </summary>
+			public const string LibraryPath = @"C:\WINDOWS\system32\USER32.DLL";
+
+			[DllImport(LibraryPath)]
+			public static extern bool DestroyIcon(
+				IntPtr hIcon);
 		}
 	}
 }

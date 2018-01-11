@@ -1,7 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.IO;
-using System.Windows.Forms;
+﻿using System.IO;
 using DotnetExlib.Properties;
 
 namespace DotnetExlib.IO
@@ -12,21 +9,11 @@ namespace DotnetExlib.IO
 	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public class TemporaryFile : Stream
 	{
-		internal static readonly string DirectoryName;
-		static TemporaryFile()
-		{
-			DirectoryName = StringUtils.GetRandomText(
-				8,
-				32,
-				Process.GetCurrentProcess().Id);
-			Directory.CreateDirectory(DirectoryName);
-		}
-
 		private string _file_path;
 		private FileStream _stream;
 
 		/// <summary>
-		///  一時ファイルのストリームです。
+		///  一時ファイルの基となるファイル ストリームです。
 		/// </summary>
 		public FileStream BaseStream
 		{
@@ -112,42 +99,7 @@ namespace DotnetExlib.IO
 		/// <param name="name">一時ファイルの名前です。</param>
 		public TemporaryFile(FilePlace place, string name)
 		{
-			switch (place) {
-				case FilePlace.System:
-					_file_path = Path.Combine(
-						Environment.GetEnvironmentVariable(
-							"Temp",
-							EnvironmentVariableTarget.Machine),
-						DirectoryName,
-						name);
-					break;
-				case FilePlace.User:
-					_file_path = Path.Combine(
-						Environment.GetEnvironmentVariable(
-							"Temp",
-							EnvironmentVariableTarget.Process),
-						DirectoryName,
-						name);
-					break;
-				case FilePlace.Application:
-					_file_path = Path.Combine(
-						Application.StartupPath,
-						"Temp",
-						DirectoryName,
-						name);
-					break;
-				case FilePlace.CurrentDirectory:
-					_file_path = Path.Combine(
-						Environment.CurrentDirectory,
-						".$Temp$",
-						DirectoryName,
-						name);
-					break;
-				default:
-					throw new ArgumentException($"{place}は不正な値です。");
-			}
-
-			_stream = new FileStream(_file_path, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None);
+			(_file_path, _stream) = FilePathManager.GetTempFile(place, name);
 		}
 
 		/// <summary>

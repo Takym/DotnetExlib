@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DotnetExlib</RootNamespace>
     <AssemblyName>DotnetExlib</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -26,7 +26,7 @@
     <CheckForOverflowUnderflow>true</CheckForOverflowUnderflow>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE;Release;AnyCPU</DefineConstants>
@@ -52,7 +52,7 @@
     <OutputPath>bin\x64\Release\</OutputPath>
     <DefineConstants>TRACE;Release;_64Bit</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <PlatformTarget>x64</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -76,7 +76,7 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE;Release;_32Bit</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
@@ -110,16 +110,27 @@
     <Compile Include="AOP\IAspectBehavior.cs" />
     <Compile Include="AOP\Logger.cs" />
     <Compile Include="AppRegistry\FileExtension.cs" />
+    <Compile Include="AppRegistry\IExtensionRegistry.cs" />
+    <Compile Include="AppRegistry\Protocol.cs" />
     <Compile Include="ConsoleUtils.cs" />
+    <Compile Include="Desktop\HTMLViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Desktop\HTMLViewer.Designer.cs">
+      <DependentUpon>HTMLViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="DictionaryExtension.cs" />
     <Compile Include="DisposableBase.cs" />
     <Compile Include="Graphics\ImageWrapper.cs" />
     <Compile Include="Graphics\Picture.cs" />
     <Compile Include="Graphics\PictureLayer.cs" />
     <Compile Include="IO\Database\INode.cs" />
+    <Compile Include="IO\FilePathManager.cs" />
     <Compile Include="IO\FilePlace.cs" />
     <Compile Include="IO\IConfigFile.cs" />
+    <Compile Include="IO\IconLoader.cs" />
     <Compile Include="IO\IniFile.cs" />
+    <Compile Include="IO\LogFileWriter.cs" />
     <Compile Include="IO\TemporaryFile.cs" />
     <Compile Include="IRandom.cs" />
     <Compile Include="Properties\LicenseKind.cs" />
@@ -129,6 +140,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WinAPIWrapper.cs" />
     <Compile Include="Xorshift.cs" />
+    <Compile Include="Yastopy\CopySettings.cs" />
+    <Compile Include="Yastopy\LinkFileProcessing.cs" />
+    <Compile Include="Yeckthone\CAP\CapAnalyzer.cs" />
+    <Compile Include="Yeckthone\ILexicalAnalyzer.cs" />
+    <Compile Include="Yeckthone\ISyntaxAnalyzer.cs" />
+    <Compile Include="Yeckthone\Token.cs" />
+    <Compile Include="Yeckthone\TokenType.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Icon.ico" />
@@ -137,6 +155,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\app.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Desktop\HTMLViewer.resx">
+      <DependentUpon>HTMLViewer.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Yeckthone\CSV\" />
+    <Folder Include="Yeckthone\EXON\" />
+    <Folder Include="Yeckthone\INI\" />
+    <Folder Include="Yeckthone\JSON\" />
+    <Folder Include="Yeckthone\List\" />
+    <Folder Include="Yeckthone\ObjectValue\" />
+    <Folder Include="Yeckthone\Table\" />
+    <Folder Include="Yeckthone\XML\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

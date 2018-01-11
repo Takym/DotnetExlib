@@ -12,7 +12,7 @@ using DotnetExlib.Properties;
 [assembly: AssemblyCompany("TakymSystems")]
 [assembly: AssemblyProduct("DotnetExlib")]
 [assembly: AssemblyCopyright("Copyright (C) 2017 Takym.")]
-[assembly: AssemblyTrademark("なし")]
+[assembly: AssemblyTrademark("Copyright (C) 2017 Takym.")]
 [assembly: AssemblyCulture("")]
 
 // ComVisible を false に設定すると、このアセンブリ内の型は COM コンポーネントから
