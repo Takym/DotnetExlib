@@ -1,7 +1,9 @@
 ﻿using System.IO;
+using DotnetExlib.Properties;
 
 namespace DotnetExlib.Yeckthone.CAP
 {
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public class CapAnalyzer : ILexicalAnalyzer, ISyntaxAnalyzer
 	{
 		public CapAnalyzer(string filename)

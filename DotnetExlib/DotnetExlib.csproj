@@ -124,6 +124,7 @@
     <Compile Include="Graphics\ImageWrapper.cs" />
     <Compile Include="Graphics\Picture.cs" />
     <Compile Include="Graphics\PictureLayer.cs" />
+    <Compile Include="Graphics\Shapes\DrawerBase.cs" />
     <Compile Include="IO\Database\INode.cs" />
     <Compile Include="IO\FilePathManager.cs" />
     <Compile Include="IO\FilePlace.cs" />

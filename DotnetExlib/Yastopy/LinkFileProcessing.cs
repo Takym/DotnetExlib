@@ -1,8 +1,11 @@
-﻿namespace DotnetExlib.Yastopy
+﻿using DotnetExlib.Properties;
+
+namespace DotnetExlib.Yastopy
 {
 	/// <summary>
 	///  リンクファイルの処理方法を指定します。
 	/// </summary>
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public enum LinkFileProcessing
 	{
 		/// <summary>

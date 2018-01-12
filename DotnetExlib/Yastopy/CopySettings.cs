@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DotnetExlib.Properties;
 
 namespace DotnetExlib.Yastopy
 {
 	/// <summary>
 	///  コピーに関する設定データを管理します。
 	/// </summary>
+	[Author("Takym", copyright: "Copyright (C) 2017 Takym.")]
 	public class CopySettings
 	{
 		/* Link File Settings */

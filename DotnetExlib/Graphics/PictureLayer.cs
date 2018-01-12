@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
+using DotnetExlib.Graphics.Shapes;
 using DotnetExlib.Properties;
 using Grap = System.Drawing.Graphics;
 
@@ -47,7 +48,12 @@ namespace DotnetExlib.Graphics
 			Image result = new Bitmap(_size.Width, _size.Height);
 			using (Grap g = Grap.FromImage(result)) {
 				foreach (var img in this.Items) {
-					g.DrawImage(img.ToImage(), 0, 0);
+					DrawerBase drawer = img as DrawerBase;
+					if (drawer != null) {
+						g.DrawImage(img.ToImage(), drawer.Location);
+					} else {
+						g.DrawImage(img.ToImage(), 0, 0);
+					}
 				}
 			}
 			return result;
